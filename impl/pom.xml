@@ -23,29 +23,31 @@
     Project to create the Mojarra implementation jar.
 
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-   <parent>
+    <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>mojarra-parent</artifactId>
         <version>4.0.6</version>
     </parent>
 
-   <artifactId>jakarta.faces</artifactId>
-   <packaging>jar</packaging>
+    <artifactId>jakarta.faces-s2a</artifactId>
+    <packaging>jar</packaging>
 
-   <name>Mojarra ${project.version}</name>
-   <description>EE4J Compatible Implementation for Jakarta Faces API</description>
+    <name>Mojarra ${project.version}</name>
+    <description>EE4J Compatible Implementation for Jakarta Faces API</description>
 
-   <properties>
+    <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <mojarra.logstrings.version>${project.version}</mojarra.logstrings.version>
     </properties>
 
-   <!-- ###  D E P E N D E N C I E S  ### -->
-   <dependencies>
+    <!-- ###  D E P E N D E N C I E S  ### -->
+    <dependencies>
         <!-- Jakarta EE Dependencies -->
 
         <dependency>
@@ -74,7 +76,7 @@
             <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
-    
+
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
@@ -88,10 +90,10 @@
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
-        
-        
+
+
         <!-- Optional -->
-        
+
         <dependency>
             <groupId>jakarta.transaction</groupId>
             <artifactId>jakarta.transaction-api</artifactId>
@@ -99,7 +101,7 @@
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
-        
+
         <dependency>
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
@@ -137,38 +139,38 @@
             <artifactId>jakarta.annotation-api</artifactId>
             <version>2.1.0</version>
         </dependency>
-        
-        
+
+
         <!-- TEST DEPENDENCIES -->
-        
+
         <dependency>
             <groupId>org.glassfish.expressly</groupId>
             <artifactId>expressly</artifactId>
             <version>5.0.0-M1</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>5.11.0</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.4</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
@@ -184,7 +186,7 @@
         </dependency>
     </dependencies>
 
-   <build>
+    <build>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -207,7 +209,9 @@
         </resources>
         <pluginManagement>
             <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <!--This
+                plugin's configuration is used to store Eclipse m2e settings only. It has no
+                influence on the Maven build itself.-->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
@@ -237,7 +241,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
-        
+
             <!-- ###  C O M P R E S S  /  M I N I F Y   faces.js  ###   -->
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
@@ -256,22 +260,25 @@
                             <aggregations>
                                 <aggregation>
                                     <includes>
-                                        <include>${project.basedir}/src/main/resources/META-INF/resources/jakarta.faces/faces-uncompressed.js</include>
+                                        <include>
+                                            ${project.basedir}/src/main/resources/META-INF/resources/jakarta.faces/faces-uncompressed.js</include>
                                     </includes>
-                                    <output>${project.build.directory}/generated-resources/yui/faces.js</output>
+                                    <output>
+                                        ${project.build.directory}/generated-resources/yui/faces.js</output>
                                 </aggregation>
                             </aggregations>
                             <includes>
                                 <include>*.js</include>
                             </includes>
                             <sourceDirectory>${project.build.directory}/generated-resources/yui</sourceDirectory>
-                            <outputDirectory>${project.build.directory}/generated-resources/yui/META-INF/resources/jakarta.faces/</outputDirectory>
+                            <outputDirectory>
+                                ${project.build.directory}/generated-resources/yui/META-INF/resources/jakarta.faces/</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-            
+
             <!-- Adds the paths where the source and resources generated above was stored -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -304,8 +311,8 @@
                     <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
-     
-            
+
+
             <!-- Creates the OSGi MANIFEST.MF file -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
@@ -326,23 +333,24 @@
                         <Bundle-SymbolicName>org.glassfish.jakarta.faces</Bundle-SymbolicName>
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Bundle-Name>Mojarra Faces Implementation ${project.version}</Bundle-Name>
-                        <Bundle-Description>Eclipse Faces Implementation (jakarta.faces/4.0) ${project.version}</Bundle-Description>
-                        
+                        <Bundle-Description>Eclipse Faces Implementation (jakarta.faces/4.0)
+                            ${project.version}</Bundle-Description>
+
                         <Specification-Title>Jakarta Faces</Specification-Title>
                         <Specification-Version>4.0</Specification-Version>
-                        
-                        <Implementation-Title>Mojarra</Implementation-Title> 
+
+                        <Implementation-Title>Mojarra</Implementation-Title>
                         <Implementation-Version>${project.version}</Implementation-Version>
-                        <Implementation-Vendor>Eclipse</Implementation-Vendor> 
+                        <Implementation-Vendor>Eclipse</Implementation-Vendor>
                         <Implementation-Vendor-Id>org.glassfish</Implementation-Vendor-Id>
-                        
+
                         <Extension-Name>jakarta.faces</Extension-Name>
-                        
+
                         <Export-Package>
                             jakarta.faces.*,
                             com.sun.faces.*
                         </Export-Package>
-                        
+
                         <Import-Package>
                             jakarta.faces.*,
                             com.sun.faces.*,
@@ -389,7 +397,7 @@
                     </instructions>
                 </configuration>
             </plugin>
-            
+
             <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -405,7 +413,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            
+
             <!-- Creates the source jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -420,7 +428,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!-- 
                Create Javadoc for API jar
             -->

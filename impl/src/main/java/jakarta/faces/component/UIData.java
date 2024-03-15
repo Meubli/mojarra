@@ -948,9 +948,7 @@ public class UIData extends UIComponentBase implements NamingContainer, UniqueId
                 try {
                     newRow = extractFirstNumericSegment(clientId.substring(myId.length()), sepChar);
                 } catch (NumberFormatException ex) {
-                    // PENDING(edburns): I18N
-                    String message = "Trying to extract rowIndex from clientId \'" + clientId + "\' " + ex.getMessage();
-                    throw new NumberFormatException(message);
+                    newRow = -1;
                 }
                 setRowIndex(newRow);
                 if (isRowAvailable()) {
